@@ -1,19 +1,6 @@
 import pandas as pd
 
-def get_companies_with_highest_cancelled_flights(conn):
-    cur = conn.cursor()
-    cur.execute('''
-                SELECT model AS model, AVG(ontime.DepDelay) 
-                AS avg_delay
-                FROM planes JOIN ontime USING(tailnum)
-                WHERE ontime.Cancelled = 0 AND ontime.Diverted = 0 
-                AND ontime.DepDelay > 0 GROUP BY model ORDER BY avg_delay
-                ''')
-    selected = cur.fetchone()
-    print(type(selected))
-    print(selected)
          
-    
 def get_companies_with_highest_cancel_density(conn):
     cur = conn.cursor()
     cur.execute('''
